@@ -118,16 +118,10 @@ python init_db.py
 source run.sh
 ```
 
-### Alternatively
+### Alternatively,
 
-1. *Start the Uvicorn server:*
+*Start the Streamlit app:*
 ```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
-
-2. *Start the Streamlit app:*
-```bash
-cd frontend
 streamlit run app.py
 ```
 

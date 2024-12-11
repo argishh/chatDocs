@@ -1,10 +1,19 @@
 # app.py
 import os
-from datetime import datetime
+import subprocess
+import threading
 import uuid
+from datetime import datetime
 
 import requests
 import streamlit as st
+
+# Start the FastAPI server in a separate thread
+def start_fastapi():
+    subprocess.run(['uvicorn', 'api:app', '--reload', '--host', '0.0.0.0', '--port', '8000'])
+
+fastapi_thread = threading.Thread(target=start_fastapi)
+fastapi_thread.start()
 
 # Configure page settings
 st.set_page_config(
