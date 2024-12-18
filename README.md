@@ -20,7 +20,7 @@ ChatDocs is an intelligent document chat system that allows users to upload docu
 ![Overview](img/overview.png)
 
 </details>
-<br>
+
 <details>
     <summary><b>🌟 Features</b></summary>
 <br>
@@ -51,6 +51,26 @@ ChatDocs is an intelligent document chat system that allows users to upload docu
   - Minimal dependencies
   - Quick installation and configuration
   - Detailed documentation and usage examples
+
+</details>
+
+<details>
+    <summary><b>❔ FAQs</b><br></summary>
+
+###  **How does ChatDocs work?** 
+*ChatDocs uses RAG to generate responses based on the uploaded documents. It first indexes and embeds the documents using ChromaDB and then uses the LangChain pipeline to process the queries and generate responses.*
+
+### **What file formats are supported?**
+*ChatDocs currently supports PDF, DOCX, and TXT file formats. You can upload documents in any of these formats and interact with them using natural language queries.*
+
+### **Can I use my own GPT model?**
+*Yes, you can use your own GPT model by setting the `OPENAI_API_KEY` environment variable to your API key. ChatDocs currently supports OpenAI's GPT-3 model, but you can easily switch to other models by changing the API key.*
+
+### **Is my data secure?**
+*Yes, your data is secure with ChatDocs. The documents are stored securely in the ChromaDB vectorstore, and the API endpoints are protected against common vulnerabilities. The system uses session-based authentication to ensure that only authorized users can access the data.*
+
+### **What is RAG?**
+*RAG (Retrieval Augmented Generation) is a transformer-based model that combines the power of retrieval-based and generative models. It uses a retriever to find relevant documents and a generator to produce responses based on the retrieved context.*
 
 </details>
 
@@ -133,18 +153,17 @@ streamlit run app.py
 
 ```
 chatDocs/
-├── README.md
-├── requirements.txt
-├── .env
-├── api.py
-├── app.py
-├── RAG/
-│   ├── __init__.py
-│   ├── chroma_utils.py
-│   ├── db_utils.py
-│   ├── langchain_utils.py
-│   └── pydantic_models.py
-└── chroma_db/
+├── README.md                   # About the Project
+├── requirements.txt            # Python dependencies
+├── .env                        # Environment variables
+├── api.py                      # FastAPI server
+├── app.py                      # Streamlit frontend
+├── RAG/                        # RAG pipeline
+│   ├── chroma_utils.py         # ChromaDB utilities
+│   ├── db_utils.py             # SQLite database utilities
+│   ├── langchain_utils.py      # LangChain utilities
+│   └── pydantic_models.py      # Pydantic data models
+└── chroma_db/                  # ChromaDB vectorstore
     └── ...
 ```
 
@@ -204,6 +223,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🗺 Future Tasks
 
+- [ ] Add Docker Container
 - [x] Implement batch document upload
 - [ ] Add support for other LLMs (Groq, Gemma, Claude, Llama3.3, etc.)
 - [ ] Add support for more file types
