@@ -172,31 +172,30 @@ def main():
     
     # Create sidebar
     with st.sidebar:
-        st.header("Current Session")
-        st.caption(f"ID: {st.session_state.session_id[:8]}...")
-        if st.button("➕ New Session", type="secondary", help="Start a new chat session"):
-            st.session_state.messages = []
-            st.session_state.session_id = str(uuid.uuid4())
-            st.rerun()
-        st.divider()
+        with st.expander('Manage Session'):
+            st.caption(f"ID: {st.session_state.session_id[:8]}...")
+            if st.button("➕ New Session", type="secondary", help="Start a new chat session"):
+                st.session_state.messages = []
+                st.session_state.session_id = str(uuid.uuid4())
+                st.rerun()
+        # st.divider()
 
         # API Key input at the very top
-        st.header("OpenAI API")
-        api_key = st.text_input("Enter your OpenAI API key", type="password")
-        if api_key and not st.session_state.api_key_set:
-            if set_api_key(api_key):
-                st.success("API key set successfully!")
-            else:
-                st.error("Failed to set API key")        
+        with st.expander('OpenAI API', expanded=True):
+            api_key = st.text_input("Enter your OpenAI API key", type="password")
+            if api_key and not st.session_state.api_key_set:
+                if set_api_key(api_key):
+                    st.success("API key set successfully!")
+                else:
+                    st.error("Failed to set API key")        
 
         # Model selection
         model = st.selectbox(
             "Choose Model",
-            ["gpt-4o-mini", "gpt-4o"],
+            ["gpt-4o-mini", "gpt-4o", "o1-2024-12-17", "o1-mini-2024-09-12"],
             index=0
         )
         
-        st.divider()
         
         st.header("Manage Docs")
         
